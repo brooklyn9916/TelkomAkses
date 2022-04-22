@@ -20,6 +20,34 @@
         </li>
         
       </ul>
+      
+      <ul class="navbar-nav">
+      
+        
+      </ul>
     </div>
+    <ul class="navbar-nav">
+      <li>
+      <a class="nav-link" aria-current="page" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+</li>
+        
+    
+    <a class="navbar-brand" href="#"text-align="center;">{{ Auth::user()->name }}</a>
+
+</ul>
   </div>
 </nav>
+
+
+
+
+
+  
