@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
+use App\Models\Form;
+use Illuminate\Routing\RouteGroup;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,22 +34,18 @@ Route::get('/about', function () {
 });
 
 Route::get('/gallery', function () {
-    return view('gallery',[
-        "title" => "Gallery"
-    ]);
-});
 
-Route::get('/form', function () {
-    return view('form',[
-        "title" => "Formulir Registrasi"
+    $data = Form::all();
+
+    return view('gallery',[
+        "title" => "Gallery",
+        'data' => $data
     ]);
 });
 
 Route::resource('/form', FormController::class);
-
-Route::get('/form', [FormController::class,'Formupload']);
-
-Route::post('/form', [FormController::class, 'FormFile'])->name('form.formfile');
+Route::get('/form', FormController::class . '@index');
+Route::get('/delete_data/{id}', [FormController::class, 'destroy']);
 
 Auth::routes();
 
